@@ -131,7 +131,7 @@ button {
 }
 
 /* Completed */
-.name-todo {
+.todo-line {
   text-decoration: line-through;
   color: #888;
 }
