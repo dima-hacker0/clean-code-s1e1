@@ -10,7 +10,7 @@ body {
   display: block;
   text-align: right;
 }
-.top-panel-img {
+.top-panel__img {
   width: 100%;
 }
 .top-panel .more_inf {
@@ -96,7 +96,7 @@ button {
 }
 
 /* Task list */
-.li-element {
+.block-task {
   overflow: hidden;
   padding: 20px 0;
   border-bottom: 1px solid #eee;
@@ -105,14 +105,14 @@ button {
   justify-content: space-between;
   align-items: center;
 }
-.li-element > * {
+.block-task > * {
   vertical-align: middle;
 }
 
-.input-checkbox {
+.block-task__checkbox {
   margin: 0 10px;
 }
-.name-todo {
+.block-task__label {
   padding-left: 10px;
   box-sizing: border-box;
   font-size: 18px;
@@ -121,12 +121,12 @@ button {
 .input-text {
   width: 226px;
 }
-.img-remome {
+.block-task__img-remome {
   height: 2em;
   transform: rotateZ(45deg);
   transition: transform 200ms ease-in;
 }
-.img-remome:hover {
+.block-task__img-remome:hover {
   transform: rotateZ(0);
 }
 
@@ -137,7 +137,7 @@ button {
 }
 
 /* Edit Task */
-.input-to-do {
+.block-task__input {
   display: none;
 }
 

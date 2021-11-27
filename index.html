@@ -9,9 +9,9 @@
   </head>
   <body>
     <header class="top-panel">
-      <img alt="eisenhower matrix" class="top-panel-img" src="./eisenhower-matrix.jpg">
+      <img alt="eisenhower matrix" class="top-panel__img" src="./eisenhower-matrix.jpg">
       <a
-          class="more-inf" 
+          class="top-panel__more-inf" 
           href="https://goal-life.com/page/method/matrix-eisenhower">
           Want more details?
       </a>
@@ -27,27 +27,28 @@
       <section>
         <h3 class="text-h3">Todo</h3>
         <ul id="incomplete-tasks">
-          <li class="li-element">
-            <input class="all-inputs input-checkbox" type="checkbox">
-            <label class="task all-labels name-todo">Pay Bills</label>
-            <input type="text" class="task input-text all-inputs input-to-do">
+          <li class="block-task">
+            <input class="all-inputs block-task__checkbox" type="checkbox">
+            <label class="task all-labels block-task__label">Pay Bills</label>
+            <input type="text" class="task input-text all-inputs block-task__input">
             <button class="edit button">Edit</button>
-            <button class="delete button">
-              <img alt="img remove" class="img-remome" src="./remove.svg">
+            <button class="block-task__delete button">
+              <img alt="img remove" class="block-task__img-remome" src="./remove.svg">
             </button>
           </li>
-          <li class="edit-mode li-element">
-            <input class="all-inputs input-checkbox input-edit" type="checkbox">
+          <li class="edit-mode block-task">
+            <input class="all-inputs block-task__checkbox input-edit" type="checkbox">
             <label
-                class="task all-labels name-todo label-edit">Go Shopping
+                class="task all-labels block-task__label label-edit">Go Shopping
             </label>
-            <input type="text"
+            <input 
+                type="text"
                 value="Go Shopping" 
-                class="input-edit task input-text all-inputs input-to-do"
+                class="input-edit task input-text all-inputs block-task__input"
             >
             <button class="edit button">Save</button>
-            <button class="delete button">
-              <img alt="img remove" class="img-remome" src="./remove.svg">
+            <button class="block-task__delete button">
+              <img alt="img remove" class="block-task__img-remome" src="./remove.svg">
             </button>
           </li>
         </ul>
@@ -55,13 +56,13 @@
       <section>
         <h3 class="text-h3">Completed</h3>
         <ul id="completed-tasks">
-          <li class="li-element">
-            <input type="checkbox" class="input-checkbox" checked>
-            <label class="task all-labels name-todo todo-line">See the Doctor</label>
-            <input type="text" class="task input-text all-inputs input-to-do">
+          <li class="block-task">
+            <input type="checkbox" class="block-task__checkbox" checked>
+            <label class="task all-labels block-task__label todo-line">See the Doctor</label>
+            <input type="text" class="task input-text all-inputs block-task__input">
             <button class="edit button">Edit</button>
-            <button class="delete button">
-              <img alt="img remove" class="img-remome"  src="./remove.svg">
+            <button class="block-task__delete button">
+              <img alt="img remove" class="block-task__img-remome"  src="./remove.svg">
             </button>
           </li>
         </ul>
