@@ -5,22 +5,22 @@
 //Solution: Add interactivity so the user can manage daily tasks.
 //Break things down into smaller steps and take each step at a time.
 
-
 // Event handling, user interaction is what starts the code execution.
 
 var taskInput=document.getElementById("new-task");//Add a new task.
-var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
+var addButton=document.querySelectorAll(".button")[0];//first button
+var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
-
 
 //New task list item
 var createNewTaskElement=function(taskString){
 
     var listItem=document.createElement("li");
+    listItem.classList.add('block-task');
 
     //input (checkbox)
     var checkBox=document.createElement("input");//checkbx
+    checkBox.classList.add('all-inputs');
     //label
     var label=document.createElement("label");//label
     //input (text)
@@ -30,23 +30,33 @@ var createNewTaskElement=function(taskString){
 
     //button.delete
     var deleteButton=document.createElement("button");//delete button
+    deleteButton.classList.add('button');
+    deleteButton.classList.add('.block-task__delete');
     var deleteButtonImg=document.createElement("img");//delete button image
-
+    deleteButtonImg.alt = 'img remove';
+    deleteButtonImg.classList.add('block-task__img-remome');
     label.innerText=taskString;
     label.className='task';
+    label.classList.add('all-labels');
+    label.classList.add('block-task__label');
 
     //Each elements, needs appending
     checkBox.type="checkbox";
     editInput.type="text";
     editInput.className="task";
+    editInput.classList.add('input-text');
+    editInput.classList.add('all-inputs');
+    editInput.classList.add('block-task__input');
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit";
 
-    deleteButton.className="delete";
+    editButton.className="edit";
+    editButton.classList.add('button');
+
+    deleteButton.className="block-task";
+    deleteButton.classList.add('button');
     deleteButtonImg.src='./remove.svg';
     deleteButton.appendChild(deleteButtonImg);
-
 
     //and appending.
     listItem.appendChild(checkBox);
@@ -56,8 +66,6 @@ var createNewTaskElement=function(taskString){
     listItem.appendChild(deleteButton);
     return listItem;
 }
-
-
 
 var addTask=function(){
     console.log("Add Task...");
@@ -79,13 +87,14 @@ var editTask=function(){
     console.log("Edit Task...");
     console.log("Change 'edit' to 'save'");
 
-
     var listItem=this.parentNode;
 
     var editInput=listItem.querySelector('input[type=text]');
+    editInput.classList.add('input-edit');
     var label=listItem.querySelector("label");
+    label.classList.add('label-edit');
     var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("editMode");
+    var containsClass=listItem.classList.contains("edit-mode");
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -93,15 +102,18 @@ var editTask=function(){
         //label becomes the inputs value.
         label.innerText=editInput.value;
         editBtn.innerText="Edit";
+        label.classList.remove('label-edit');
+        editInput.classList.remove('input-edit');
     }else{
         editInput.value=label.innerText;
         editBtn.innerText="Save";
+        label.classList.add('label-edit');
+        editInput.classList.add('input-edit');
     }
 
     //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
+    listItem.classList.toggle("edit-mode");
 };
-
 
 //Delete task.
 var deleteTask=function(){
@@ -111,9 +123,7 @@ var deleteTask=function(){
     var ul=listItem.parentNode;
     //Remove the parent list item from the ul.
     ul.removeChild(listItem);
-
 }
-
 
 //Mark task completed
 var taskCompleted=function(){
@@ -122,29 +132,29 @@ var taskCompleted=function(){
     //Append the task list item to the #completed-tasks
     var listItem=this.parentNode;
     completedTasksHolder.appendChild(listItem);
+    console.log(listItem);
+    console.log(listItem.children[1]);
     bindTaskEvents(listItem, taskIncomplete);
+    listItem.children[1].classList.add('todo-line');
 
 }
-
 
 var taskIncomplete=function(){
     console.log("Incomplete Task...");
 //Mark task as incomplete.
     //When the checkbox is unchecked
-    //Append the task list item to the #incompleteTasks.
+    //Append the task list item to the #incomplete-tasks.
     var listItem=this.parentNode;
+    listItem.children[1].classList.remove('todo-line');
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
 }
-
-
 
 var ajaxRequest=function(){
     console.log("AJAX Request");
 }
 
 //The glue to hold it all together.
-
 
 //Set the click handler to the addTask function.
 addButton.onclick=addTask;
@@ -156,9 +166,9 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     console.log("bind list item events");
 //select ListItems children
     var checkBox=taskListItem.querySelector("input[type=checkbox]");
+    checkBox.className = 'all-inputs';
     var editButton=taskListItem.querySelector("button.edit");
-    var deleteButton=taskListItem.querySelector("button.delete");
-
+    var deleteButton=document.querySelector(".block-task__delete");
 
     //Bind editTask to edit button.
     editButton.onclick=editTask;
@@ -176,17 +186,11 @@ for (var i=0; i<incompleteTaskHolder.children.length;i++){
     bindTaskEvents(incompleteTaskHolder.children[i],taskCompleted);
 }
 
-
-
-
 //cycle over completedTasksHolder ul list items
 for (var i=0; i<completedTasksHolder.children.length;i++){
     //bind events to list items chldren(tasksIncompleted)
     bindTaskEvents(completedTasksHolder.children[i],taskIncomplete);
 }
-
-
-
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
